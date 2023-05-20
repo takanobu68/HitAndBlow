@@ -83,7 +83,13 @@ class HitAndBlow {
 
   end() {
     printLine(`正解です！ \n試行回数:${this.tryCount}回`);
+    this.reset();
     process.exit();
+  }
+
+  private reset() {
+    this.answer = [];
+    this.tryCount = 0;
   }
 
   private validate(inputArr: string[]) {
