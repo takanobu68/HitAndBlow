@@ -7,8 +7,7 @@ type NextActions = (typeof nextActions)[number];
 type GameTitle = (typeof gameTitles)[number];
 
 type GameStore = {
-  'hit and blow': HitAndBlow;
-  janken: Janken;
+  [key in GameTitle]: HitAndBlow | Janken;
 };
 
 class GameProcedure {
