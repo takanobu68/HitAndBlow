@@ -7,6 +7,18 @@ class HitAndBlow {
     const inputArr = (
       await promptInput('[,]区切りで3つの数字を入力してください')
     ).split(',');
+
+    const result = this.check(inputArr);
+
+    if (result.hit !== this.answer.length) {
+      // 不正解であれば続ける
+      printLine(`---\nHit: ${result.hit}\nBlow: ${result.blow}\n---`);
+      this.tryCount++;
+      await this.play();
+    } else {
+      // 正解だったら終了
+      this.tryCount++;
+    }
   }
 
   setting() {
@@ -19,6 +31,24 @@ class HitAndBlow {
         this.answer.push(selectedItem);
       }
     }
+  }
+
+  check(input: string[]) {
+    let hitCount = 0;
+    let blowCount = 0;
+
+    input.forEach((val, index) => {
+      if (val === this.answer[index]) {
+        hitCount++;
+      } else if (this.answer.includes(val)) {
+        blowCount++;
+      }
+    });
+
+    return {
+      hit: hitCount,
+      blow: blowCount,
+    };
   }
 }
 
