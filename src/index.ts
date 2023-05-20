@@ -13,6 +13,11 @@ class HitAndBlow {
   ];
   private answer: string[] = [];
   private tryCount = 0;
+  private mode: 'normal' | 'hard';
+
+  constructor(mode: 'normal' | 'hard') {
+    this.mode = mode;
+  }
 
   async play() {
     const inputArr = (
@@ -98,7 +103,7 @@ const promptInput = async (text: string) => {
 };
 
 (async () => {
-  const hitAndBlow = new HitAndBlow();
+  const hitAndBlow = new HitAndBlow('normal');
   hitAndBlow.setting();
   await hitAndBlow.play();
   hitAndBlow.end();
