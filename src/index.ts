@@ -15,11 +15,7 @@ class HitAndBlow {
   ];
   private answer: string[] = [];
   private tryCount = 0;
-  private mode: Mode;
-
-  constructor(mode: Mode) {
-    this.mode = mode;
-  }
+  private mode: Mode = 'normal';
 
   async play() {
     const answerLength = this.getAnswerLength();
@@ -62,7 +58,8 @@ class HitAndBlow {
     return isLengthValid && isAllAnswerSourceOption && isAllDifferentValues;
   }
 
-  setting() {
+  async setting() {
+    this.mode = (await promptInput('モードを入力してください')) as Mode;
     const answerLength = this.getAnswerLength();
 
     while (this.answer.length < answerLength) {
@@ -117,8 +114,8 @@ const promptInput = async (text: string) => {
 };
 
 (async () => {
-  const hitAndBlow = new HitAndBlow('normal');
-  hitAndBlow.setting();
+  const hitAndBlow = new HitAndBlow();
+  await hitAndBlow.setting();
   await hitAndBlow.play();
   hitAndBlow.end();
 })();
