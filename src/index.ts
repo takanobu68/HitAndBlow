@@ -37,4 +37,5 @@ const promptInput = async (text: string) => {
 (async () => {
   const hitAndBlow = new HitAndBlow();
   hitAndBlow.setting();
+  await hitAndBlow.play();
 })();
