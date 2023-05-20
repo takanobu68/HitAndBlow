@@ -161,8 +161,5 @@ const promptSelect = async <T extends string>(
 };
 
 (async () => {
-  const hitAndBlow = new HitAndBlow();
-  await hitAndBlow.setting();
-  await hitAndBlow.play();
-  hitAndBlow.end();
+  new GameProcedure().start();
 })();
