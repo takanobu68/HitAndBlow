@@ -96,6 +96,8 @@ class HitAndBlow {
         return 3;
       case 'hard':
         return 4;
+      default:
+        throw new Error(`${this.mode}は無効なモードです`);
     }
   }
 }
